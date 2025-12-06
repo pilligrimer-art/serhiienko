@@ -12,7 +12,7 @@
     <meta property="og:image" content="https://serhiienko.uttt.com.ua/photo.png">
     <meta property="og:type" content="profile">
     
-    <title>Prof. Dr. Olena Serhiienko | Digital Business Card</title>
+    <title>🇺🇦 Prof. Dr. Olena Serhiienko | Digital Business Card</title>
     
     <script type="application/ld+json">
     {
@@ -39,7 +39,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -586,20 +586,67 @@
             .accordion-inner { padding: 0; color: #000; }
             .tag { border: 1px solid #ccc; background: none; color: #000; }
         }
+        
+/* --- НОВЫЕ СТИЛИ ДЛЯ ИНТРО (ИСПРАВЛЕННЫЕ) --- */
+        :root { --font-hand: 'Great Vibes', cursive; }
+
+        .profile-container.intro-active {
+            background: transparent !important;
+            box-shadow: none !important;
+            border-color: transparent !important;
+            backdrop-filter: none !important;
+        }
+        
+        /* Скрываем всё, кроме имени */
+        .profile-container.intro-active > *:not(.header),
+        .profile-container.intro-active .header > *:not(.name-wrapper),
+        .profile-container.intro-active + .language-switcher,
+        .profile-container.intro-active .language-switcher {
+            opacity: 0; visibility: hidden;
+        }
+
+        .fade-in-element { transition: opacity 2.5s ease; }
+
+        .name-wrapper {
+            /* Важно: блочное отображение для центровки */
+            display: block; 
+            margin: 0 auto 8px auto;
+            /* Ширина будет задана через JS, чтобы текст печатался слева-направо внутри центра */
+            width: fit-content; 
+            min-height: 80px; 
+        }
+
+        .name-title-animated {
+            font-family: var(--font-hand);
+            font-size: 3.8rem;
+            font-weight: 400;
+            color: #ffffff; /* ЧИСТО БЕЛЫЙ ЦВЕТ */
+            text-shadow: 0 0 15px rgba(0,0,0,0.6);
+            white-space: nowrap; 
+            overflow: hidden;
+            border-right: 3px solid var(--accent-teal); /* Курсор */
+            line-height: 1.2;
+            display: block;
+            width: 0; /* Начальное состояние */
+            /* Анимация курсора (мигание) */
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        @keyframes blink-caret { 50% { border-color: transparent } }
     </style>
 </head>
 <body>
 
     <div class="card-wrapper">
         
-        <nav class="language-switcher">
+        <nav class="language-switcher fade-in-element">
             <a href="index.html" class="lang-flag active" title="English" aria-label="Switch to English">🇬🇧</a>
             <a href="ua.html" class="lang-flag" title="Українська" aria-label="Switch to Ukrainian">🇺🇦</a>
         </nav>
 
-        <main class="profile-container">
+        <main class="profile-container intro-active" id="mainCard">
             <header class="header">
-                <div class="avatar-wrapper">
+                <div class="avatar-wrapper fade-in-element">
                     <img src="https://serhiienko.uttt.com.ua/photo.png" 
                          alt="Dr. Olena Serhiienko" 
                          class="avatar"
@@ -607,15 +654,17 @@
                     <div class="verified-badge" title="Verified Expert"><i class="fas fa-check"></i></div>
                 </div>
                 
-                <h1 class="name-title">Olena Serhiienko</h1>
-                <div class="job-title-extended">
+                <div class="name-wrapper">
+    <h1 class="name-title-animated" id="typedName">Olena Serhiienko</h1>
+</div>
+                <div class="job-title-extended fade-in-element">
                     <p>Doctor of Science (Economics) | Professor</p>
                     <p>CEO at HealthHelper Startup | Vice-President, Three Seas Initiative UA</p>
                     <p>Co-Founder, Ukrainian Technology Transfer Team</p>
                     <p>Member, BNB Business Club | NGO ProSMARTBiz leader</p>
                 </div>
                 
-                <div class="location">
+                <div class="location fade-in-element">
                     <i class="fas fa-map-marker-alt"></i> Kharkiv, Ukraine & EU
                 </div>
             </header>
@@ -752,7 +801,7 @@
                                         <i class="fab fa-orcid"></i>
                                         <span>ORCID</span>
                                     </a>
-                                    <a href="https://www.researchgate.net/" target="_blank" rel="noopener noreferrer" class="social-card">
+                                    <a href="https://www.researchgate.net/profile/Olena-Serhiienko-2" target="_blank" rel="noopener noreferrer" class="social-card">
                                         <i class="fab fa-researchgate"></i>
                                         <span>ResearchGate</span>
                                     </a>
@@ -786,90 +835,137 @@
         </main>
     </div>
 
-    <script>
-        "use strict";
+   <script>
+    "use strict";
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Accordion Logic with Auto-Scroll ---
-            const container = document.getElementById('accordionContainer');
+    document.addEventListener('DOMContentLoaded', () => {
+        // ==========================================
+        // НАСТРОЙКИ
+        const animationSeconds = 2.5; // Скорость анимации
+        const storageKey = 'introPlayed_v1'; // Ключ для запоминания
+        // ==========================================
 
-            container.addEventListener('click', (e) => {
-                const button = e.target.closest('.accordion-header');
-                if (!button) return;
+        const nameTitle = document.getElementById('typedName');
+        const mainCard = document.getElementById('mainCard');
+        const fadeElements = document.querySelectorAll('.fade-in-element');
+        const nameWrapper = document.querySelector('.name-wrapper');
+        
+        // --- ГЛАВНОЕ ИСПРАВЛЕНИЕ: Ждем загрузки шрифтов ---
+        document.fonts.ready.then(() => {
+            
+            const hasPlayed = sessionStorage.getItem(storageKey);
 
-                const item = button.closest('.accordion-item');
-                const body = item.querySelector('.accordion-body');
-                const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-                // Close all other items
-                document.querySelectorAll('.accordion-item').forEach(acc => {
-                    if (acc !== item) {
-                        acc.classList.remove('active');
-                        const btn = acc.querySelector('.accordion-header');
-                        const b = acc.querySelector('.accordion-body');
-                        btn.setAttribute('aria-expanded', 'false');
-                        b.setAttribute('hidden', '');
-                        b.style.maxHeight = null;
-                    }
+            if (hasPlayed) {
+                // === ВАРИАНТ А: Анимация уже была ===
+                mainCard.classList.remove('intro-active');
+                nameTitle.style.width = 'auto'; 
+                nameTitle.style.borderRight = 'none'; 
+                
+                fadeElements.forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.visibility = 'visible';
+                    el.style.transition = 'none';
                 });
 
-                // Toggle current item
-                if (isExpanded) {
-                    item.classList.remove('active');
-                    button.setAttribute('aria-expanded', 'false');
-                    body.setAttribute('hidden', '');
-                    body.style.maxHeight = null;
-                } else {
-                    item.classList.add('active');
-                    button.setAttribute('aria-expanded', 'true');
-                    body.removeAttribute('hidden');
-                    
-                    // Force reflow
-                    void body.offsetWidth; 
-                    body.style.maxHeight = body.scrollHeight + "px";
+            } else {
+                // === ВАРИАНТ Б: Первый заход (Анимация) ===
+                
+                // 1. Сначала ставим auto, чтобы измерить РЕАЛЬНУЮ ширину загруженного шрифта
+                nameTitle.style.width = 'auto'; 
+                const fullWidth = nameTitle.offsetWidth; 
+                
+                // 2. Применяем ширину к обертке и обнуляем текст
+                nameWrapper.style.width = fullWidth + 'px';
+                nameTitle.style.width = '0px';
+                
+                // 3. Запускаем анимацию с небольшой задержкой для надежности
+                setTimeout(() => {
+                    nameTitle.style.transition = `width ${animationSeconds}s steps(60, end)`;
+                    nameTitle.style.width = fullWidth + 'px'; 
+                }, 100);
 
-                    // --- Scroll to center logic ---
-                    setTimeout(() => {
-                        item.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'center'
-                        });
-                    }, 350);
+                // 4. Финал анимации
+                setTimeout(() => {
+                    nameTitle.style.borderRight = 'none';
+                    mainCard.classList.remove('intro-active');
+                    
+                    fadeElements.forEach(el => {
+                        el.style.opacity = '1';
+                        el.style.visibility = 'visible';
+                    });
+
+                    sessionStorage.setItem(storageKey, 'true');
+
+                }, (animationSeconds * 1000) + 100); 
+            }
+        });
+
+        // --- ДАЛЕЕ КОД АККОРДЕОНА И VCARD (Они работают независимо от шрифтов) ---
+        
+        // Логика аккордеона
+        const container = document.getElementById('accordionContainer');
+        container.addEventListener('click', (e) => {
+            const button = e.target.closest('.accordion-header');
+            if (!button) return;
+            const item = button.closest('.accordion-item');
+            const body = item.querySelector('.accordion-body');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                if (acc !== item) {
+                    acc.classList.remove('active');
+                    acc.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+                    const b = acc.querySelector('.accordion-body');
+                    b.setAttribute('hidden', '');
+                    b.style.maxHeight = null;
                 }
             });
 
-            // --- vCard Generation (Standard 3.0 + UTF-8) ---
-            const vCardBtn = document.getElementById('vcardBtn');
-            
-            vCardBtn.addEventListener('click', () => {
-                const vCardData = [
-                    "BEGIN:VCARD",
-                    "VERSION:3.0",
-                    "FN;CHARSET=UTF-8:Dr. Olena Serhiienko",
-                    "N;CHARSET=UTF-8:Serhiienko;Olena;Andriianovna;Dr.;Prof.",
-                    "TITLE;CHARSET=UTF-8:Doctor of Science (Economics), Professor, CEO HealthHelper, VP Three Seas Initiative UA",
-                    "ORG;CHARSET=UTF-8:National Technical University Kharkiv Polytechnic Institute",
-                    "EMAIL;TYPE=INTERNET:Elena.Sergienko@khpi.edu.ua",
-                    "URL:https://www.linkedin.com/in/olenaserhiienko/",
-                    "URL:https://t.me/HelenSerhiienko",
-                    "URL:https://www.facebook.com/serhiienkoo",
-                    "URL:https://orcid.org/0000-0002-9796-9218",
-                    "ADR;TYPE=WORK;CHARSET=UTF-8:;;Kyrpychova St 2;Kharkiv;;61002;Ukraine",
-                    "NOTE;CHARSET=UTF-8:Doctor of Economic Sciences with 20+ years in Data Science and Strategic Management. CEO of HealthHelper MedTech startup. Vice-President of Three Seas Initiative Ukraine.",
-                    "END:VCARD"
-                ].join("\r\n");
-
-                const blob = new Blob(["\uFEFF" + vCardData], { type: "text/vcard;charset=utf-8" });
-                const url = URL.createObjectURL(blob);
-                
-                const link = document.createElement("a");
-                link.download = "Olena_Serhiienko.vcf";
-                link.href = url;
-                link.click();
-                
-                setTimeout(() => URL.revokeObjectURL(url), 2000);
-            });
+            if (isExpanded) {
+                item.classList.remove('active');
+                button.setAttribute('aria-expanded', 'false');
+                body.setAttribute('hidden', '');
+                body.style.maxHeight = null;
+            } else {
+                item.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+                body.removeAttribute('hidden');
+                void body.offsetWidth; 
+                body.style.maxHeight = body.scrollHeight + "px";
+                setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'center' }), 350);
+            }
         });
+
+        // Генерация контакта (vCard)
+        document.getElementById('vcardBtn').addEventListener('click', () => {
+            const isUa = document.documentElement.lang === 'uk';
+            const title = isUa ? "Доктор економічних наук, Професор, CEO HealthHelper" : "Doctor of Science (Economics), Professor, CEO HealthHelper";
+            const org = isUa ? "НТУ ХПІ" : "NTU KhPI";
+            const note = isUa ? "Доктор економічних наук, Data Science." : "Doctor of Economic Sciences, Data Science.";
+
+            const vCardData = [
+                "BEGIN:VCARD",
+                "VERSION:3.0",
+                "FN;CHARSET=UTF-8:Dr. Olena Serhiienko",
+                "N;CHARSET=UTF-8:Serhiienko;Olena;Andriianovna;Dr.;Prof.",
+                "TITLE;CHARSET=UTF-8:" + title,
+                "ORG;CHARSET=UTF-8:" + org,
+                "EMAIL;TYPE=INTERNET:serhelenka@gmail.com",
+                "URL:https://www.linkedin.com/in/olenaserhiienko/",
+                "ADR;TYPE=WORK;CHARSET=UTF-8:;;Kyrychova 2;Kharkiv;;61002;Ukraine",
+                "NOTE;CHARSET=UTF-8:" + note,
+                "END:VCARD"
+            ].join("\r\n");
+
+            const blob = new Blob(["\uFEFF" + vCardData], { type: "text/vcard;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.download = "Olena_Serhiienko.vcf";
+            link.href = url;
+            link.click();
+            setTimeout(() => URL.revokeObjectURL(url), 2000);
+        });
+    });
     </script>
 </body>
 </html>
