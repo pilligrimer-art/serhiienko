@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Цифровая визитка профессора Елены Сергиенко (Olena Serhiienko). Эксперт в области стратегического менеджмента, CEO HealthHelper, Вице-президент Инициативы трех морей (Украина).">
+    <meta name="keywords" content="Olena Serhiienko, Helen Serhiienko, Елена Сергиенко, NTU KhPI, HealthHelper, Three Seas Initiative, Data Science, Professor">
+    <meta name="author" content="Olena Serhiienko">
+    <meta property="og:title" content="Dr. Olena Serhiienko | Digital Profile">
+    <meta property="og:description" content="Strategic Management Expert, CEO HealthHelper, Professor.">
+    <meta property="og:image" content="path/to/avatar.jpg">
+    <title>Prof. Dr. Olena Serhiienko | Digital Business Card</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables & Design System --- */
+        :root {
+            --bg-dark: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            
+            --accent-teal: #06b6d4;
+            --accent-hover: #0891b2;
+            --accent-gold: #fbbf24;
+            
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            
+            --card-radius: 24px;
+            --btn-radius: 50px;
+            --transition-speed: 0.3s;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(251, 191, 36, 0.08) 0%, transparent 45%);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            padding: 40px 24px 32px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(6,182,212,0.05), transparent);
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 14px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: none;
+            border-bottom: 3px solid var(--accent-teal);
+            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.3);
+            background: #1e293b;
+            transition: all 0.3s;
+            clip-path: circle(50% at 50% 50%);
+            position: relative;
+        }
+
+        .avatar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            right: 20%;
+            height: 60%;
+            border-left: 3px solid var(--accent-teal);
+            border-right: 3px solid var(--accent-teal);
+            border-bottom: 3px solid var(--accent-teal);
+            border-radius: 0 0 90px 90px;
+            pointer-events: none;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .lang-btn {
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .lang-btn.active {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: var(--accent-teal);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--bg-dark);
+            font-size: 14px;
+        }
+
+        .name-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .job-title {
+            font-size: 0.95rem;
+            color: var(--accent-teal);
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .job-title-extended {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .job-title-extended p {
+            margin-bottom: 4px;
+        }
+
+        .job-title-extended p:last-child {
+            margin-bottom: 0;
+        }
+
+        .location {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0 24px 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: var(--btn-radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all var(--transition-speed);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-teal);
+            color: white;
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .content-wrapper {
+            padding: 0 24px 40px;
+        }
+
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all var(--transition-speed);
+        }
+
+        .accordion-item:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .accordion-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-icon {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .chevron {
+            color: var(--text-secondary);
+            transition: transform var(--transition-speed);
+        }
+
+        .accordion-item.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-inner {
+            padding: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .accordion-inner p { margin-bottom: 12px; }
+        .accordion-inner p:last-child { margin-bottom: 0; }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .list-item i {
+            color: var(--accent-teal);
+            margin-top: 4px;
+            font-size: 0.8rem;
+        }
+
+        .mini-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 8px;
+            color: var(--accent-teal);
+            text-decoration: none;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .mini-link-btn:hover {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: var(--accent-teal);
+            transform: translateY(-2px);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .social-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            border-color: var(--accent-teal);
+        }
+
+        .social-card i {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .social-card-main {
+            padding: 16px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .social-card-main:hover {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: var(--accent-teal);
+        }
+
+        .social-card-main i {
+            font-size: 2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .tag {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-teal);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="profile-container">
+        <div class="language-switcher">
+            <a href="index.html" class="lang-btn active" title="English">🇬🇧</a>
+            <a href="ua.html" class="lang-btn" title="Українська">🇺🇦</a>
+        </div>
+
+        <header class="header">
+            <div class="avatar-wrapper">
+                <img src="https://serhiienko.uttt.com.ua/photo.png" alt="Dr. Olena Serhiienko" class="avatar">
+                <div class="verified-badge" title="Verified Expert"><i class="fas fa-check"></i></div>
+            </div>
+            
+            <h1 class="name-title">Olena Serhiienko</h1>
+            <div class="job-title-extended">
+                <p>Doctor of Science (Economics) | Professor</p>
+                <p>CEO at HealthHelper Startup | Vice-President, Three Seas Initiative UA</p>
+                <p>Co-Founder, Ukrainian Technology Transfer Team</p>
+                <p>Member, BNB Business Club | NGO ProSMARTBiz leader</p>
+            </div>
+            
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i> Kharkiv, Ukraine & EU
+            </div>
+        </header>
+
+        <section class="action-grid">
+            <a href="https://t.me/HelenSerhiienko" target="_blank" class="btn btn-primary">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <button class="btn btn-secondary" onclick="generateVCard()">
+                <i class="fas fa-user-plus"></i> Save Contact
+            </button>
+        </section>
+
+        <section class="content-wrapper">
+            
+            <div class="accordion-item active">
+                <button class="accordion-header" onclick="toggleItem(this)">
+                    <div class="accordion-header-left">
+                        <i class="fas fa-briefcase accordion-icon"></i>
+                        <span>Key Positions</span>
+                    </div>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </button>
+                <div class="accordion-body" style="max-height: 600px;">
+                    <div class="accordion-inner">
+                        <div class="list-item">
+                            <i class="fas fa-university"></i>
+                            <div style="flex: 1;">
+                                <strong>Professor at NTU KhPI</strong><br>
+                                <span style="font-size: 0.85rem;">Dept. of Business, Trade & Logistics. PhD Guarantor.</span>
+                            </div>
+                            <a href="https://web.kpi.kharkov.ua/business/en/professor/" target="_blank" class="mini-link-btn" title="Visit university profile">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-heartbeat"></i>
+                            <div style="flex: 1;">
+                                <strong>CEO HealthHelper</strong><br>
+                                <span style="font-size: 0.85rem;">DeepTech startup: Vascular diagnostics & IoT.</span>
+                            </div>
+                            <a href="https://www.linkedin.com/showcase/hhelper" target="_blank" class="mini-link-btn" title="HealthHelper on LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-globe-europe"></i>
+                            <div style="flex: 1;">
+                                <strong>VP Three Seas Initiative (Ukraine)</strong><br>
+                                <span style="font-size: 0.85rem;">National Platform. Infrastructure & Logistics.</span>
+                            </div>
+                            <a href="https://www.linkedin.com/company/3si-ua" target="_blank" class="mini-link-btn" title="3SI Ukraine on LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-rocket"></i>
+                            <div style="flex: 1;">
+                                <strong>Co-Founder UTTT LLC</strong><br>
+                                <span style="font-size: 0.85rem;">Technology Transfer & Investment.</span>
+                            </div>
+                            <a href="https://www.uttt.com.ua/" target="_blank" class="mini-link-btn" title="Visit UTTT website">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleItem(this)">
+                    <div class="accordion-header-left">
+                        <i class="fas fa-user-circle accordion-icon"></i>
+                        <span>About Me</span>
+                    </div>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-inner">
+                        <p>Doctor of Economic Sciences, Professor with over 20 years of experience in Data Science and Cybernetics. Expert in strategic modeling of complex systems.</p>
+                        <p>I combine academic depth (Habilitation recognition in Germany) with real business (CEO HealthHelper) and diplomacy (Vice-President of the Three Seas Initiative in Ukraine).</p>
+                        <div class="tag-cloud">
+                            <span class="tag">Strategic Management</span>
+                            <span class="tag">MedTech</span>
+                            <span class="tag">Diplomacy</span>
+                            <span class="tag">Data Science</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleItem(this)">
+                    <div class="accordion-header-left">
+                        <i class="fas fa-brain accordion-icon"></i>
+                        <span>Scientific Expertise</span>
+                    </div>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-inner">
+                        <p>Author of 400+ publications (Scopus/WoS). h-index: 11</p>
+                        <div class="list-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Mathematical Modelling & Forecasting</span>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Risk Management & Crisis Prevention</span>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Machine Learning & Data Mining</span>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Habilitation recognized in Germany</span>
+                        </div>
+                        
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
+                            <h4 style="color: var(--text-primary); font-size: 0.85rem; margin-bottom: 12px;">Academic Profiles</h4>
+                            <div class="social-grid" style="grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                                <a href="https://scholar.google.com.ua/citations?user=khohzfEAAAAJ" target="_blank" class="social-card">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Scholar</span>
+                                </a>
+                                <a href="https://orcid.org/0000-0002-9796-9218" target="_blank" class="social-card">
+                                    <i class="fab fa-orcid"></i>
+                                    <span>ORCID</span>
+                                </a>
+                                <a href="https://www.researchgate.net/" target="_blank" class="social-card">
+                                    <i class="fab fa-researchgate"></i>
+                                    <span>ResearchGate</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--text-primary); font-size: 0.9rem; font-weight: 600; margin: 24px 0 12px 0; text-transform: uppercase; letter-spacing: 0.5px;">Connect with Me</h3>
+            <div class="social-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <a href="https://www.linkedin.com/in/olenaserhiienko/" target="_blank" class="social-card social-card-main">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://www.facebook.com/serhiienkoo" target="_blank" class="social-card social-card-main">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://t.me/serhelenka" target="_blank" class="social-card social-card-main">
+                    <i class="fab fa-telegram"></i>
+                    <span>My Blog</span>
+                </a>
+            </div>
+
+        </section>
+
+        <footer>
+            &copy; 2025 Olena Serhiienko. Designed for Impact.
+        </footer>
+    </main>
+
+    <script>
+        // --- Accordion Logic ---
+        function toggleItem(button) {
+            const item = button.parentElement;
+            const body = item.querySelector('.accordion-body');
+            const isActive = item.classList.contains('active');
+
+            // Close all items
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+                acc.querySelector('.accordion-body').style.maxHeight = null;
+            });
+
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+                body.style.maxHeight = body.scrollHeight + "px";
+            }
+        }
+
+        // --- vCard Generation Logic (RFC 2426) ---
+        function generateVCard() {
+            const vCardData = [
+                "BEGIN:VCARD",
+                "VERSION:3.0",
+                "FN:Dr. Olena Serhiienko",
+                "N:Serhiienko;Olena;Andriianovna;Dr.;Prof.",
+                "TITLE:Doctor of Science (Economics), Professor, CEO HealthHelper, Vice-President Three Seas Initiative Ukraine",
+                "ORG:National Technical University Kharkiv Polytechnic Institute",
+                "EMAIL;TYPE=INTERNET:Elena.Sergienko@khpi.edu.ua",
+                "URL:https://www.linkedin.com/in/olenaserhiienko/",
+                "URL:https://t.me/HelenSerhiienko",
+                "URL:https://t.me/serhelenka",
+                "URL:https://www.facebook.com/serhiienkoo",
+                "URL:https://orcid.org/0000-0002-9796-9218",
+                "ADR;TYPE=WORK:;;Kyrpychova St 2;Kharkiv;;61002;Ukraine",
+                "NOTE:Doctor of Economic Sciences with 20+ years in Data Science and Strategic Management. CEO of HealthHelper MedTech startup. Vice-President of Three Seas Initiative Ukraine. Co-Founder of Ukrainian Technology Transfer Team.",
+                "END:VCARD"
+            ].join("\n");
+
+            const blob = new Blob([vCardData], { type: "text/vcard;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement("a");
+            link.download = "Olena_Serhiienko.vcf";
+            link.href = url;
+            link.click();
+            
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+        }
+    </script>
+</body>
+</html>
