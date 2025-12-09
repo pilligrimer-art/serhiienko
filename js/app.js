@@ -1,10 +1,11 @@
+import { translations } from './data.js';
+
 "use strict";
 
 /**
  * Main Application Controller
  * Handles initialization, routing (state), UI hydration, and PWA registration.
- * 
- * Security: All user-facing content is sanitized via escapeHtml() and sanitizeIcon()
+ * * Security: All user-facing content is sanitized via escapeHtml() and sanitizeIcon()
  * Performance: Event delegation for accordions, lazy QR generation
  */
 
@@ -84,13 +85,6 @@ function sanitizeIcon(icon) {
 let currentLangState = CONFIG.defaultLang;
 
 function initApp() {
-    // 3.1 Validate translations loaded
-    if (typeof translations === 'undefined') {
-        console.error('❌ Critical Error: translations object not found!');
-        document.body.innerHTML = '<div style="color:white; text-align:center; margin-top:50px; padding:20px;">Error: Data file (data.js) failed to load. Please refresh the page.</div>';
-        return;
-    }
-
     // 3.2 Theme Initialization
     const savedTheme = localStorage.getItem(CONFIG.storageKeys.theme);
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
