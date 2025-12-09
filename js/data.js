@@ -1,13 +1,12 @@
 /**
  * Global Data Repository for Prof. Dr. Olena Serhiienko's Profile.
  * This file serves as the Content Management System (CMS) for the static site.
- * 
- * Architecture:
+ * * Architecture:
  * - Keys (en, ua, de, ru) correspond to ISO language codes.
  * - Structure strictly mimics the UI component hierarchy.
  */
 
-const translations = {
+export const translations = {
     en: {
         meta: {
             title: "Prof. Dr. Olena Serhiienko - Academic Profile",
