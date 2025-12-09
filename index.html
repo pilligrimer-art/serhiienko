@@ -3,47 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Digital Business Card of Prof. Dr. Olena Serhiienko. Strategic Management Expert, CEO HealthHelper, Vice-President Three Seas Initiative (Ukraine).">
-    <meta name="keywords" content="Olena Serhiienko, Helen Serhiienko, NTU KhPI, HealthHelper, Three Seas Initiative, Data Science, Professor">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <meta name="author" content="Olena Serhiienko">
     
-    <meta property="og:title" content="Dr. Olena Serhiienko | Digital Profile">
-    <meta property="og:description" content="Strategic Management Expert, CEO HealthHelper, Professor.">
-    <meta property="og:image" content="https://serhiienko.uttt.com.ua/photo.png">
     <meta property="og:type" content="profile">
+    <meta property="og:image" content="https://serhiienko.uttt.com.ua/photo.png">
     
-    <title>🇺🇦 Prof. Dr. Olena Serhiienko | Digital Business Card</title>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Prof. Dr. Olena Serhiienko",
-      "jobTitle": "Professor, Doctor of Economics",
-      "image": "https://serhiienko.uttt.com.ua/photo.png",
-      "url": "https://serhiienko.uttt.com.ua",
-      "worksFor": [
-        { "@type": "Organization", "name": "NTU KhPI" },
-        { "@type": "Organization", "name": "HealthHelper" },
-        { "@type": "Organization", "name": "Three Seas Initiative UA" }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/olenaserhiienko/",
-        "https://t.me/HelenSerhiienko",
-        "https://www.facebook.com/serhiienkoo"
-      ]
-    }
-    </script>
+    <title>Loading...</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <script src="data.js"></script>
+
     <style>
-        /* --- CSS Variables & Design System --- */
+        /* --- CSS STYLES --- */
         :root {
             --bg-dark: #0f172a;
             --glass-bg: rgba(30, 41, 59, 0.65);
@@ -58,6 +35,7 @@
             
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Inter', sans-serif;
+            --font-hand: 'Great Vibes', cursive; /* Шрифт для анимации имени */
             
             --card-radius: 24px;
             --btn-radius: 50px;
@@ -88,7 +66,7 @@
             outline-offset: 2px;
         }
 
-        /* --- NEW: Card Wrapper for positioning external elements --- */
+        /* --- Card Wrapper --- */
         .card-wrapper {
             position: relative;
             width: 100%;
@@ -107,7 +85,7 @@
             overflow: hidden;
             animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
-            z-index: 2; /* Content above flags */
+            z-index: 2;
         }
 
         @keyframes slideUp {
@@ -115,10 +93,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- REDESIGNED: Language Flags --- */
+        /* --- Language Flags --- */
         .language-switcher {
             position: absolute;
-            z-index: 1; /* Behind the card visually */
+            z-index: 1; 
             display: flex;
             transition: all 0.3s;
         }
@@ -128,7 +106,7 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            background: rgba(30, 41, 59, 0.85); /* Slightly darker for contrast */
+            background: rgba(30, 41, 59, 0.85); 
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             color: var(--text-secondary);
@@ -144,7 +122,7 @@
             z-index: 10;
         }
 
-        /* Active State (English is Active here) */
+        /* Активное состояние флага */
         .lang-flag.active {
             background: rgba(6, 182, 212, 0.15);
             border-color: var(--accent-teal);
@@ -161,21 +139,21 @@
             opacity: 1;
         }
 
-        /* Desktop/Tablet: Stick out from the RIGHT side */
+        /* Desktop: Справа */
         @media (min-width: 580px) {
             .language-switcher {
-                top: 80px;
-                right: -48px; /* Stick out width */
+                top: 60px;
+                right: -48px;
                 flex-direction: column;
-                gap: 12px;
+                gap: 8px;
             }
 
             .lang-flag {
                 width: 54px;
                 height: 44px;
-                border-radius: 0 12px 12px 0; /* Rounded only on right */
+                border-radius: 0 12px 12px 0;
                 padding-left: 4px;
-                border-left: none; /* Merge with card */
+                border-left: none;
                 transform-origin: left center;
             }
             
@@ -184,25 +162,25 @@
             }
         }
 
-        /* Mobile: Stick out from the TOP (Tabs) */
+        /* Mobile: Сверху */
         @media (max-width: 579px) {
             .card-wrapper {
-                margin-top: 40px; /* Space for tabs */
+                margin-top: 50px; 
             }
 
             .language-switcher {
-                top: -42px;
-                right: 24px;
+                top: -48px;
+                right: 12px;
                 flex-direction: row;
-                gap: 8px;
+                gap: 6px;
             }
 
             .lang-flag {
                 width: 44px;
                 height: 48px;
-                border-radius: 12px 12px 0 0; /* Rounded on top */
+                border-radius: 12px 12px 0 0;
                 padding-top: 4px;
-                border-bottom: none; /* Merge with card */
+                border-bottom: none;
                 transform-origin: bottom center;
             }
 
@@ -211,8 +189,7 @@
             }
         }
 
-        /* --- Rest of CSS --- */
-
+        /* --- Header & Profile --- */
         .header {
             padding: 40px 24px 32px;
             text-align: center;
@@ -270,40 +247,18 @@
             font-size: 14px;
         }
 
-        .name-title {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .job-title {
-            font-size: 0.95rem;
-            color: var(--accent-teal);
-            font-weight: 600;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
         .job-title-extended {
             font-size: 0.85rem;
             color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 16px;
-            max-width: 420px;
+            max-width: 440px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .job-title-extended p {
-            margin-bottom: 4px;
-        }
-
-        .job-title-extended p:last-child {
-            margin-bottom: 0;
+            margin-bottom: 6px;
         }
 
         .location {
@@ -446,7 +401,7 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
         }
         
         .list-item i {
@@ -568,7 +523,7 @@
                 overflow: visible;
             }
             .header { padding-top: 0; background: none; }
-            .name-title, .job-title-extended, .list-item, .accordion-header { color: #000 !important; }
+            .name-title-animated, .job-title-extended, .list-item, .accordion-header { color: #000 !important; }
             .job-title, .accordion-icon, .list-item i { color: #000 !important; font-weight: bold; }
             
             /* Hide elements */
@@ -586,10 +541,8 @@
             .accordion-inner { padding: 0; color: #000; }
             .tag { border: 1px solid #ccc; background: none; color: #000; }
         }
-        
-/* --- НОВЫЕ СТИЛИ ДЛЯ ИНТРО (ИСПРАВЛЕННЫЕ) --- */
-        :root { --font-hand: 'Great Vibes', cursive; }
 
+        /* --- Стили для анимации Интро --- */
         .profile-container.intro-active {
             background: transparent !important;
             box-shadow: none !important;
@@ -597,7 +550,7 @@
             backdrop-filter: none !important;
         }
         
-        /* Скрываем всё, кроме имени */
+        /* Скрываем всё, кроме имени, во время интро */
         .profile-container.intro-active > *:not(.header),
         .profile-container.intro-active .header > *:not(.name-wrapper),
         .profile-container.intro-active + .language-switcher,
@@ -608,10 +561,8 @@
         .fade-in-element { transition: opacity 2.5s ease; }
 
         .name-wrapper {
-            /* Важно: блочное отображение для центровки */
             display: block; 
             margin: 0 auto 8px auto;
-            /* Ширина будет задана через JS, чтобы текст печатался слева-направо внутри центра */
             width: fit-content; 
             min-height: 80px; 
         }
@@ -620,15 +571,14 @@
             font-family: var(--font-hand);
             font-size: 3.8rem;
             font-weight: 400;
-            color: #ffffff; /* ЧИСТО БЕЛЫЙ ЦВЕТ */
+            color: #ffffff;
             text-shadow: 0 0 15px rgba(0,0,0,0.6);
             white-space: nowrap; 
             overflow: hidden;
-            border-right: 3px solid var(--accent-teal); /* Курсор */
+            border-right: 3px solid var(--accent-teal);
             line-height: 1.2;
             display: block;
-            width: 0; /* Начальное состояние */
-            /* Анимация курсора (мигание) */
+            width: 0;
             animation: blink-caret .75s step-end infinite;
         }
 
@@ -640,251 +590,256 @@
     <div class="card-wrapper">
         
         <nav class="language-switcher fade-in-element">
-            <a href="index.html" class="lang-flag active" title="English" aria-label="Switch to English">🇬🇧</a>
-            <a href="ua.html" class="lang-flag" title="Українська" aria-label="Switch to Ukrainian">🇺🇦</a>
+            <a onclick="changeLanguage('en')" class="lang-flag" data-lang="en" title="English">🇬🇧</a>
+            <a onclick="changeLanguage('ua')" class="lang-flag" data-lang="ua" title="Українська">🇺🇦</a>
+            <a onclick="changeLanguage('de')" class="lang-flag" data-lang="de" title="Deutsch">🇩🇪</a>
+            <a onclick="changeLanguage('ru')" class="lang-flag" data-lang="ru" title="Русский">🇷🇺</a>
         </nav>
 
         <main class="profile-container intro-active" id="mainCard">
             <header class="header">
                 <div class="avatar-wrapper fade-in-element">
-                    <img src="https://serhiienko.uttt.com.ua/photo.png" 
-                         alt="Dr. Olena Serhiienko" 
-                         class="avatar"
-                         width="280" height="280">
-                    <div class="verified-badge" title="Verified Expert"><i class="fas fa-check"></i></div>
+                    <img id="avatar" src="" alt="Avatar" class="avatar" width="280" height="280">
+                    <div class="verified-badge" title="Verified"><i class="fas fa-check"></i></div>
                 </div>
                 
                 <div class="name-wrapper">
-    <h1 class="name-title-animated" id="typedName">Olena Serhiienko</h1>
-</div>
-                <div class="job-title-extended fade-in-element">
-                    <p>Doctor of Science (Economics) | Professor</p>
-                    <p>CEO at HealthHelper Startup | Vice-President, Three Seas Initiative UA</p>
-                    <p>Co-Founder, Ukrainian Technology Transfer Team</p>
-                    <p>Member, BNB Business Club | NGO ProSMARTBiz leader</p>
+                    <h1 class="name-title-animated" id="typedName">...</h1>
                 </div>
-                
-                <div class="location fade-in-element">
-                    <i class="fas fa-map-marker-alt"></i> Kharkiv, Ukraine & EU
-                </div>
+
+                <div class="job-title-extended fade-in-element" id="headerTitles"></div>
+                <div class="location fade-in-element" id="headerLocation"></div>
             </header>
 
             <section class="action-grid">
-                <a href="https://t.me/HelenSerhiienko" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                    <i class="fab fa-telegram"></i> Telegram
+                <a id="telegramBtn" href="#" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-telegram"></i> <span>Telegram</span>
                 </a>
                 <button class="btn btn-secondary" id="vcardBtn">
-                    <i class="fas fa-user-plus"></i> Save Contact
+                    <i class="fas fa-user-plus"></i> <span id="vcardText">Save</span>
                 </button>
             </section>
 
             <section class="content-wrapper" id="accordionContainer">
-                
-                <div class="accordion-item active">
-                    <h2 class="accordion-heading-wrapper">
-                        <button class="accordion-header" type="button" aria-expanded="true" aria-controls="sect1">
-                            <div class="accordion-header-left">
-                                <i class="fas fa-briefcase accordion-icon"></i>
-                                <span>Key Positions</span>
-                            </div>
-                            <i class="fas fa-chevron-down chevron"></i>
-                        </button>
-                    </h2>
-                    <div id="sect1" class="accordion-body" style="max-height: 600px;">
-                        <div class="accordion-inner">
-                            <div class="list-item">
-                                <i class="fas fa-university"></i>
-                                <div style="flex: 1;">
-                                    <strong>Professor at NTU KhPI</strong><br>
-                                    <span style="font-size: 0.85rem;">Dept. of Business, Trade & Logistics. PhD Guarantor.</span>
-                                </div>
-                                <a href="https://web.kpi.kharkov.ua/business/en/professor/" target="_blank" rel="noopener noreferrer" class="mini-link-btn" title="Visit university profile">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                            <div class="list-item">
-                                <i class="fas fa-heartbeat"></i>
-                                <div style="flex: 1;">
-                                    <strong>CEO HealthHelper</strong><br>
-                                    <span style="font-size: 0.85rem;">DeepTech startup: Vascular diagnostics & IoT.</span>
-                                </div>
-                                <a href="https://www.linkedin.com/showcase/hhelper" target="_blank" rel="noopener noreferrer" class="mini-link-btn" title="HealthHelper on LinkedIn">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </div>
-                            <div class="list-item">
-                                <i class="fas fa-globe-europe"></i>
-                                <div style="flex: 1;">
-                                    <strong>VP Three Seas Initiative (Ukraine)</strong><br>
-                                    <span style="font-size: 0.85rem;">National Platform. Infrastructure & Logistics.</span>
-                                </div>
-                                <a href="https://www.linkedin.com/company/3si-ua" target="_blank" rel="noopener noreferrer" class="mini-link-btn" title="3SI Ukraine on LinkedIn">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </div>
-                            <div class="list-item">
-                                <i class="fas fa-rocket"></i>
-                                <div style="flex: 1;">
-                                    <strong>Co-Founder UTTT LLC</strong><br>
-                                    <span style="font-size: 0.85rem;">Technology Transfer & Investment.</span>
-                                </div>
-                                <a href="https://www.uttt.com.ua/" target="_blank" rel="noopener noreferrer" class="mini-link-btn" title="Visit UTTT website">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </section>
+            
+            <h3 id="connectTitle" style="color: var(--text-primary); font-size: 0.9rem; font-weight: 600; margin: 24px 0 12px 0; text-align:center; text-transform: uppercase; letter-spacing: 0.5px;">...</h3>
+            
+            <div class="social-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <a id="footerLinkedin" href="#" target="_blank" class="social-card social-card-main">
+                    <i class="fab fa-linkedin"></i> <span id="lblLinkedin">LinkedIn</span>
+                </a>
+                <a id="footerFacebook" href="#" target="_blank" class="social-card social-card-main">
+                    <i class="fab fa-facebook"></i> <span id="lblFacebook">Facebook</span>
+                </a>
+                <a id="footerInsta" href="#" target="_blank" class="social-card social-card-main">
+                    <i class="fab fa-instagram"></i> <span id="lblInsta">Instagram</span>
+                </a>
+            </div>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-heading-wrapper">
-                        <button class="accordion-header" type="button" aria-expanded="false" aria-controls="sect2">
-                            <div class="accordion-header-left">
-                                <i class="fas fa-user-circle accordion-icon"></i>
-                                <span>About Me</span>
-                            </div>
-                            <i class="fas fa-chevron-down chevron"></i>
-                        </button>
-                    </h2>
-                    <div id="sect2" class="accordion-body" hidden>
-                        <div class="accordion-inner">
-                            <p>Doctor of Economic Sciences, Professor with over 20 years of experience in Data Science and Cybernetics. Expert in strategic modeling of complex systems.</p>
-                            <p>I combine academic depth (Habilitation recognition in Germany) with real business (CEO HealthHelper) and diplomacy (Vice-President of the Three Seas Initiative in Ukraine).</p>
-                            <div class="tag-cloud">
-                                <span class="tag">Strategic Management</span>
-                                <span class="tag">MedTech</span>
-                                <span class="tag">Diplomacy</span>
-                                <span class="tag">Data Science</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-heading-wrapper">
-                        <button class="accordion-header" type="button" aria-expanded="false" aria-controls="sect3">
-                            <div class="accordion-header-left">
-                                <i class="fas fa-brain accordion-icon"></i>
-                                <span>Scientific Expertise</span>
-                            </div>
-                            <i class="fas fa-chevron-down chevron"></i>
-                        </button>
-                    </h2>
-                    <div id="sect3" class="accordion-body" hidden>
-                        <div class="accordion-inner">
-                            <p>Author of 400+ publications (Scopus/WoS). h-index: 11</p>
-                            <div class="list-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Mathematical Modelling & Forecasting</span>
-                            </div>
-                            <div class="list-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Risk Management & Crisis Prevention</span>
-                            </div>
-                            <div class="list-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Machine Learning & Data Mining</span>
-                            </div>
-                            <div class="list-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Habilitation recognized in Germany</span>
-                            </div>
-                            
-                            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
-                                <h4 style="color: var(--text-primary); font-size: 0.85rem; margin-bottom: 12px;">Academic Profiles</h4>
-                                <div class="social-grid" style="grid-template-columns: repeat(3, 1fr); gap: 8px;">
-                                    <a href="https://scholar.google.com.ua/citations?user=khohzfEAAAAJ" target="_blank" rel="noopener noreferrer" class="social-card">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <span>Scholar</span>
-                                    </a>
-                                    <a href="https://orcid.org/0000-0002-9796-9218" target="_blank" rel="noopener noreferrer" class="social-card">
-                                        <i class="fab fa-orcid"></i>
-                                        <span>ORCID</span>
-                                    </a>
-                                    <a href="https://www.researchgate.net/profile/Olena-Serhiienko-2" target="_blank" rel="noopener noreferrer" class="social-card">
-                                        <i class="fab fa-researchgate"></i>
-                                        <span>ResearchGate</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 style="color: var(--text-primary); font-size: 0.9rem; font-weight: 600; margin: 24px 0 12px 0; text-transform: uppercase; letter-spacing: 0.5px;">Connect with Me</h3>
-                <div class="social-grid" style="grid-template-columns: repeat(3, 1fr);">
-                    <a href="https://www.linkedin.com/in/olenaserhiienko/" target="_blank" rel="noopener noreferrer" class="social-card social-card-main">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://www.facebook.com/serhiienkoo" target="_blank" rel="noopener noreferrer" class="social-card social-card-main">
-                        <i class="fab fa-facebook"></i>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://t.me/serhelenka" target="_blank" rel="noopener noreferrer" class="social-card social-card-main">
-                        <i class="fab fa-telegram"></i>
-                        <span>My Blog</span>
-                    </a>
-                </div>
-
-            </section>
-
-            <footer>
-                &copy; 2025 Olena Serhiienko. Designed for Impact.
-            </footer>
+            <footer id="mainFooter"></footer>
         </main>
     </div>
 
-   <script>
+    <script>
     "use strict";
 
+    // Храним текущий язык глобально для vCard. По умолчанию 'en'
+    let currentLangState = 'en';
+
+    // 1. Функция смены языка
+    function changeLanguage(lang) {
+        if (typeof translations === 'undefined') {
+            console.error("Файл data.js не найден или содержит ошибки!");
+            alert("Error: data.js missing");
+            return;
+        }
+        
+        // Если языка нет в базе, переключаем на EN
+        if (!translations[lang]) lang = 'en';
+        
+        currentLangState = lang;
+
+        // Обновляем URL без перезагрузки (?lang=ru)
+        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang;
+        window.history.pushState({path: newUrl}, '', newUrl);
+
+        // Активный флаг
+        document.querySelectorAll('.lang-flag').forEach(el => {
+            el.classList.remove('active');
+            if(el.getAttribute('data-lang') === lang) el.classList.add('active');
+        });
+
+        // Запуск рендера
+        renderContent(lang);
+    }
+
+    // 2. Основной рендер контента
+    function renderContent(lang) {
+        const d = translations[lang]; 
+        
+        // --- Meta ---
+        document.title = d.meta.title;
+        document.documentElement.lang = lang; 
+        document.querySelector('meta[name="description"]').setAttribute("content", d.meta.description);
+        
+        // --- Header ---
+        document.getElementById('avatar').src = d.header.avatarUrl;
+        document.getElementById('typedName').textContent = d.header.name;
+        
+        // Формирование титулов
+        document.getElementById('headerTitles').innerHTML = d.header.titles.map((t, i) => 
+            i === 0 ? `<p style="font-weight: 600; color: var(--text-primary); font-size: 1rem;">${t}</p>` : `<p>${t}</p>`
+        ).join('');
+        document.getElementById('headerLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${d.header.location}`;
+
+        // --- Buttons ---
+        const tgBtn = document.getElementById('telegramBtn');
+        tgBtn.href = d.links.telegram.url;
+        tgBtn.querySelector('span').textContent = d.links.telegram.text;
+        document.getElementById('vcardText').textContent = d.links.vcard;
+
+        // --- Accordion Generation ---
+        const container = document.getElementById('accordionContainer');
+        container.innerHTML = ''; 
+
+        // Хелпер создания элемента
+        const createAccordionItem = (id, icon, title, contentHtml, isOpen = false) => {
+            return `
+            <div class="accordion-item ${isOpen ? 'active' : ''}">
+                <h2 class="accordion-heading-wrapper">
+                    <button class="accordion-header" type="button" aria-expanded="${isOpen}" aria-controls="${id}">
+                        <div class="accordion-header-left">
+                            <i class="${icon} accordion-icon"></i>
+                            <span>${title}</span>
+                        </div>
+                        <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                </h2>
+                <div id="${id}" class="accordion-body" ${isOpen ? 'style="max-height: 800px;"' : 'hidden'}>
+                    <div class="accordion-inner">
+                        ${contentHtml}
+                    </div>
+                </div>
+            </div>`;
+        };
+
+        // Секция 1: Позиции (Positions)
+        let posHtml = '';
+        if (d.sections.pos && d.sections.pos.items) {
+             posHtml = d.sections.pos.items.map(item => `
+                <div class="list-item">
+                    <i class="${item.icon}"></i>
+                    <div style="flex: 1;"><strong>${item.title}</strong><br><span style="font-size: 0.85rem;">${item.desc}</span></div>
+                    ${item.link ? `<a href="${item.link}" target="_blank" class="mini-link-btn"><i class="fas fa-external-link-alt"></i></a>` : ''}
+                </div>
+            `).join('');
+            container.innerHTML += createAccordionItem('sect1', 'fas fa-briefcase', d.sections.pos.title, posHtml, true);
+        }
+
+        // Секция 2: Обо мне (About)
+        let aboutHtml = '';
+        if (d.sections.about && d.sections.about.items) {
+            aboutHtml = d.sections.about.items.map(item => `
+                <div class="list-item"><i class="${item.icon}"></i><span>${item.text}</span></div>
+            `).join('');
+            // Добавляем теги
+            if (d.sections.about.tags) {
+                aboutHtml += `<div class="tag-cloud" style="margin-top: 15px;">` + 
+                             d.sections.about.tags.map(tag => `<span class="tag">${tag}</span>`).join('') + 
+                             `</div>`;
+            }
+            container.innerHTML += createAccordionItem('sect2', 'fas fa-user-circle', d.sections.about.title, aboutHtml, false);
+        }
+
+        // Секция 3: Наука (Science)
+        let scienceHtml = '';
+        if (d.sections.science && d.sections.science.items) {
+            scienceHtml = d.sections.science.items.map(item => `
+                <div class="list-item"><i class="${item.icon}"></i><span>${item.text}</span></div>
+            `).join('');
+            
+            // Профили
+            if (d.sections.science.profiles) {
+                scienceHtml += `
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <h4 style="color: var(--text-primary); font-size: 0.85rem; margin-bottom: 12px;">${d.sections.science.profilesTitle}</h4>
+                    <div class="social-grid" style="grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                        ${d.sections.science.profiles.map(p => `
+                            <a href="${p.url}" target="_blank" class="social-card">
+                                <i class="${p.icon}"></i><span>${p.name}</span>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>`;
+            }
+            container.innerHTML += createAccordionItem('sect3', 'fas fa-brain', d.sections.science.title, scienceHtml, false);
+        }
+
+        // --- Footer & Labels ---
+        document.getElementById('connectTitle').textContent = d.links.connectTitle;
+        document.getElementById('lblLinkedin').textContent = d.links.socials.linkedin;
+        document.getElementById('lblFacebook').textContent = d.links.socials.facebook;
+        document.getElementById('lblInsta').textContent = d.links.socials.instagram;
+        
+        document.getElementById('footerLinkedin').href = "https://www.linkedin.com/in/olenaserhiienko/";
+        document.getElementById('footerFacebook').href = "https://www.facebook.com/serhiienkoo";
+        document.getElementById('footerInsta').href = "https://www.instagram.com/helenkaser/"; 
+
+        document.getElementById('mainFooter').innerHTML = 
+            `${d.footer.text} <a href="https://t.me/psamm" target="_blank" style="color: rgba(255, 255, 255, 0.7);">${d.footer.devName}</a>.`;
+    }
+
+    // 3. Инициализация при загрузке страницы
     document.addEventListener('DOMContentLoaded', () => {
-        // ==========================================
-        // НАСТРОЙКИ
-        const animationSeconds = 2.5; // Скорость анимации
-        const storageKey = 'introPlayed_v1'; // Ключ для запоминания
-        // ==========================================
+        // Проверка data.js
+        if (typeof translations === 'undefined') {
+            document.body.innerHTML = "<div style='color:white; text-align:center; margin-top:50px;'>Error: data.js is missing or invalid.</div>";
+            return;
+        }
+
+        // Получаем язык из URL или ставим EN
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentLang = urlParams.get('lang') || 'en'; // ИСПРАВЛЕНО: по умолчанию EN
+
+        // Рендерим контент
+        changeLanguage(currentLang);
+
+        // --- Анимация Интро ---
+        const animationSeconds = 2.5; 
+        const storageKey = 'introPlayed_spa_v2'; 
 
         const nameTitle = document.getElementById('typedName');
         const mainCard = document.getElementById('mainCard');
         const fadeElements = document.querySelectorAll('.fade-in-element');
         const nameWrapper = document.querySelector('.name-wrapper');
         
-        // --- ГЛАВНОЕ ИСПРАВЛЕНИЕ: Ждем загрузки шрифтов ---
         document.fonts.ready.then(() => {
-            
             const hasPlayed = sessionStorage.getItem(storageKey);
 
             if (hasPlayed) {
-                // === ВАРИАНТ А: Анимация уже была ===
+                // Если уже видели анимацию - просто показываем
                 mainCard.classList.remove('intro-active');
                 nameTitle.style.width = 'auto'; 
                 nameTitle.style.borderRight = 'none'; 
-                
                 fadeElements.forEach(el => {
                     el.style.opacity = '1';
                     el.style.visibility = 'visible';
                     el.style.transition = 'none';
                 });
-
             } else {
-                // === ВАРИАНТ Б: Первый заход (Анимация) ===
-                
-                // 1. Сначала ставим auto, чтобы измерить РЕАЛЬНУЮ ширину загруженного шрифта
+                // Если первый раз - запускаем печать имени
                 nameTitle.style.width = 'auto'; 
                 const fullWidth = nameTitle.offsetWidth; 
                 
-                // 2. Применяем ширину к обертке и обнуляем текст
                 nameWrapper.style.width = fullWidth + 'px';
                 nameTitle.style.width = '0px';
                 
-                // 3. Запускаем анимацию с небольшой задержкой для надежности
                 setTimeout(() => {
                     nameTitle.style.transition = `width ${animationSeconds}s steps(60, end)`;
                     nameTitle.style.width = fullWidth + 'px'; 
                 }, 100);
 
-                // 4. Финал анимации
                 setTimeout(() => {
                     nameTitle.style.borderRight = 'none';
                     mainCard.classList.remove('intro-active');
@@ -893,16 +848,12 @@
                         el.style.opacity = '1';
                         el.style.visibility = 'visible';
                     });
-
                     sessionStorage.setItem(storageKey, 'true');
-
                 }, (animationSeconds * 1000) + 100); 
             }
         });
 
-        // --- ДАЛЕЕ КОД АККОРДЕОНА И VCARD (Они работают независимо от шрифтов) ---
-        
-        // Логика аккордеона
+        // --- Логика Аккордеона (Event Delegation) ---
         const container = document.getElementById('accordionContainer');
         container.addEventListener('click', (e) => {
             const button = e.target.closest('.accordion-header');
@@ -915,9 +866,8 @@
                 if (acc !== item) {
                     acc.classList.remove('active');
                     acc.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
-                    const b = acc.querySelector('.accordion-body');
-                    b.setAttribute('hidden', '');
-                    b.style.maxHeight = null;
+                    acc.querySelector('.accordion-body').setAttribute('hidden', '');
+                    acc.querySelector('.accordion-body').style.maxHeight = null;
                 }
             });
 
@@ -936,34 +886,41 @@
             }
         });
 
-        // Генерация контакта (vCard)
+        // --- vCard Логика (Мультиязычная) ---
         document.getElementById('vcardBtn').addEventListener('click', () => {
-            const isUa = document.documentElement.lang === 'uk';
-            const title = isUa ? "Доктор економічних наук, Професор, CEO HealthHelper" : "Doctor of Science (Economics), Professor, CEO HealthHelper";
-            const org = isUa ? "НТУ ХПІ" : "NTU KhPI";
-            const note = isUa ? "Доктор економічних наук, Data Science." : "Doctor of Economic Sciences, Data Science.";
+            if (typeof translations === 'undefined') return;
+            
+            // Берем данные для текущего языка
+            const v = translations[currentLangState].vcard;
+            // Если в переводах нет vcard данных, берем из EN как фоллбек
+            const safeV = v || translations['en'].vcard;
 
             const vCardData = [
                 "BEGIN:VCARD",
                 "VERSION:3.0",
-                "FN;CHARSET=UTF-8:Dr. Olena Serhiienko",
-                "N;CHARSET=UTF-8:Serhiienko;Olena;Andriianovna;Dr.;Prof.",
-                "TITLE;CHARSET=UTF-8:" + title,
-                "ORG;CHARSET=UTF-8:" + org,
-                "EMAIL;TYPE=INTERNET:serhelenka@gmail.com",
-                "URL:https://www.linkedin.com/in/olenaserhiienko/",
-                "ADR;TYPE=WORK;CHARSET=UTF-8:;;Kyrychova 2;Kharkiv;;61002;Ukraine",
-                "NOTE;CHARSET=UTF-8:" + note,
+                `FN;CHARSET=UTF-8:${safeV.fn}`,
+                `N;CHARSET=UTF-8:${safeV.n}`,
+                `TITLE;CHARSET=UTF-8:${safeV.title}`,
+                `ORG;CHARSET=UTF-8:${safeV.org}`,
+                `EMAIL;TYPE=INTERNET:${safeV.email}`,
+                `URL:https://www.linkedin.com/in/olenaserhiienko/`,
+                `ADR;TYPE=WORK;CHARSET=UTF-8:${safeV.location_work}`,
+                `NOTE;CHARSET=UTF-8:${safeV.note}`,
                 "END:VCARD"
             ].join("\r\n");
 
             const blob = new Blob(["\uFEFF" + vCardData], { type: "text/vcard;charset=utf-8" });
             const url = URL.createObjectURL(blob);
             const link = document.createElement("a");
-            link.download = "Olena_Serhiienko.vcf";
+            link.style.display = "none";
             link.href = url;
+            link.download = "contact.vcf";
+            document.body.appendChild(link);
             link.click();
-            setTimeout(() => URL.revokeObjectURL(url), 2000);
+            setTimeout(() => {
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }, 2000);
         });
     });
     </script>
